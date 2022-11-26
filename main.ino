@@ -4,7 +4,6 @@
 
 char buff[35];
 
-
 void setup() {
 	int angulo = 0;
 	Serial.begin(9600); // boudrate of serialport communication
@@ -29,13 +28,10 @@ void setup() {
 }
 
 void loop() {
-
 	if (Serial.available()) { //if serial receives more than 0 bytes, than there is someting to read
 		String a = Serial.readString();
-
 		if (a == "commands\r\n")
 			commands();
-
 		else if (a == "mouseID\r\n") {
 			Serial.println("Type Mouse Identification Number");
 			while (Serial.available() == 0) {}
@@ -43,7 +39,6 @@ void loop() {
 			randomize_pairs_sounds_and_figures();
 			delay(100);
 		}
-
 		//stage_0 - repertory training
 		else if (a == "stage0\r\n") {
 			Serial.println("Put the mouse at the central compartment");
@@ -55,18 +50,15 @@ void loop() {
 			}
 			repertory_trainning();
 		}
-
 		else if (a == "repeat\r\n") {
 			delay(100);
 			Repeat_Repertory_trainning();
 			repertory_trainning();
 		}
-
 		else if (a == "end\r\n") {
 			delay(100);
 			End_Repertory_trainning();
 		}
-
 		else if (a == "Stage1\r\n")
 			ExperimentConfiguration::set_current_pair("0");
 	}
